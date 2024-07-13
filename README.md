@@ -1,7 +1,3 @@
-# dotnet-auth
+# pingmint-dotnet
 
-A dotnet library that assists with authentication and authorization workflows.
-
-# Preamble
-
-...
+A dotnet library with code snippets I find useful.
