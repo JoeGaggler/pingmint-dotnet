@@ -3,6 +3,8 @@ using JsonWriterOptions = System.Text.Json.JsonWriterOptions;
 using Utf8JsonReader = System.Text.Json.Utf8JsonReader;
 using Utf8JsonWriter = System.Text.Json.Utf8JsonWriter;
 
+namespace Pingmint;
+
 public delegate void SerializeJsonAction<T>(Utf8JsonWriter writer, T? model) where T : notnull;
 
 public delegate void DeserializeJsonAction<T>(ref Utf8JsonReader reader, T model) where T : notnull;
