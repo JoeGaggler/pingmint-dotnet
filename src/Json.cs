@@ -103,7 +103,7 @@ public static class JsonDeserializerExtensions
     /// <param name="action">JSON deserializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonReader"/></param>
     /// <returns>Deserialized object, or null on error.</returns>
-    public static T? Deserialize<T>(this Span<Byte> data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
+    public static T? DeserializeJson<T>(this Span<Byte> data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
         Json.Deserialize(data, action, options);
 
     /// <summary>
@@ -114,7 +114,7 @@ public static class JsonDeserializerExtensions
     /// <param name="action">JSON deserializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonReader"/></param>
     /// <returns>Deserialized object, or null on error.</returns>
-    public static T? Deserialize<T>(this ReadOnlyMemory<Byte> data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
+    public static T? DeserializeJson<T>(this ReadOnlyMemory<Byte> data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
         Json.Deserialize(data.Span, action, options);
 
     /// <summary>
@@ -125,6 +125,6 @@ public static class JsonDeserializerExtensions
     /// <param name="action">JSON deserializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonReader"/></param>
     /// <returns>Deserialized object, or null on error.</returns>
-    public static T? Deserialize<T>(this BinaryData data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
+    public static T? DeserializeJson<T>(this BinaryData data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
         Json.Deserialize(data, action, options);
 }
