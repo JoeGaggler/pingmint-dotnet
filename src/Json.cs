@@ -76,7 +76,7 @@ public sealed class Json
     /// <param name="options">Options for <see cref="Utf8JsonReader"/></param>
     /// <returns>Deserialized object, or null on error.</returns>
     public static T? Deserialize<T>(BinaryData data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
-        Deserialize(data, action, options);
+        Deserialize((ReadOnlySpan<Byte>)data, action, options);
 }
 
 /// <summary>
