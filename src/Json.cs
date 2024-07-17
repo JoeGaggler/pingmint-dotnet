@@ -8,21 +8,52 @@ public delegate void DeserializeJsonAction<T>(ref Utf8JsonReader reader, T model
 public sealed class Json
 {
     /// <summary>
-    /// Serialize an object to a JSON string using a delegate.
+    /// Serialize an object to JSON using a delegate.
     /// </summary>
     /// <typeparam name="T">Type represented in JSON</typeparam>
     /// <param name="data">JSON payload</param>
     /// <param name="action">JSON serializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonWriter"/></param>
-    /// <returns>Serialized JSON string.</returns>
-    public static String SerializeToString<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
+    /// <returns>Serialized JSON.</returns>
+    public static ReadOnlySpan<byte> SerializeToUtf8Span<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
     {
         var buffer = new System.Buffers.ArrayBufferWriter<Byte>();
         using (var writer = new Utf8JsonWriter(buffer, options))
         {
             action(writer, data);
         }
-        return System.Text.Encoding.UTF8.GetString(buffer.WrittenSpan);
+        return buffer.WrittenSpan;
+    }
+
+    /// <summary>
+    /// Serialize an object to JSON string using a delegate.
+    /// </summary>
+    /// <typeparam name="T">Type represented in JSON</typeparam>
+    /// <param name="data">JSON payload</param>
+    /// <param name="action">JSON serializer delegate</param>
+    /// <param name="options">Options for <see cref="Utf8JsonWriter"/></param>
+    /// <returns>Serialized JSON.</returns>
+    public static ReadOnlyMemory<Byte> SerializeToUtf8Memory<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
+    {
+        var buffer = new System.Buffers.ArrayBufferWriter<Byte>();
+        using (var writer = new Utf8JsonWriter(buffer, options))
+        {
+            action(writer, data);
+        }
+        return buffer.WrittenMemory;
+    }
+
+    /// <summary>
+    /// Serialize an object to JSON string using a delegate.
+    /// </summary>
+    /// <typeparam name="T">Type represented in JSON</typeparam>
+    /// <param name="data">JSON payload</param>
+    /// <param name="action">JSON serializer delegate</param>
+    /// <param name="options">Options for <see cref="Utf8JsonWriter"/></param>
+    /// <returns>Serialized JSON.</returns>
+    public static String SerializeToString<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
+    {
+        return System.Text.Encoding.UTF8.GetString(SerializeToUtf8Span(data, action, options));
     }
 
     /// <summary>
