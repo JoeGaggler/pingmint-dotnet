@@ -8,4 +8,11 @@ public static class StringExtensions
     /// <param name="value">String of UTF-8 characters</param>
     /// <returns>UTF-8 byte array</returns>
     public static Byte[] ToUtf8Bytes(this String value) => System.Text.Encoding.UTF8.GetBytes(value);
+
+    /// <summary>
+    /// Gets the UTF-8 string of a byte array.
+    /// </summary>
+    /// <param name="value">Byte array of UTF-8 characters</param>
+    /// <returns>String of UTF-8 characters</returns>
+    public static String ToUtf8String(this Byte[] value) => System.Text.Encoding.UTF8.GetString(value);
 }
