@@ -92,8 +92,19 @@ public sealed class Json
     /// <param name="action">JSON deserializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonReader"/></param>
     /// <returns>Deserialized object, or null on error.</returns>
+    public static T? Deserialize<T>(Byte[] data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
+        Deserialize((ReadOnlySpan<Byte>)data, action, options);
+
+    /// <summary>
+    /// Deserialize a JSON object using an delegate.
+    /// </summary>
+    /// <typeparam name="T">Type represented in JSON</typeparam>
+    /// <param name="data">JSON payload</param>
+    /// <param name="action">JSON deserializer delegate</param>
+    /// <param name="options">Options for <see cref="Utf8JsonReader"/></param>
+    /// <returns>Deserialized object, or null on error.</returns>
     public static T? Deserialize<T>(Span<Byte> data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
-        Deserialize(data, action, options);
+        Deserialize((ReadOnlySpan<Byte>)data, action, options);
 
     /// <summary>
     /// Deserialize a JSON object using an delegate.
@@ -104,7 +115,7 @@ public sealed class Json
     /// <param name="options">Options for <see cref="Utf8JsonReader"/></param>
     /// <returns>Deserialized object, or null on error.</returns>
     public static T? Deserialize<T>(String data, DeserializeJsonAction<T> action, JsonReaderOptions options = default) where T : class, new() =>
-        Deserialize(data.ToUtf8Bytes().AsSpan(), action, options);
+        Deserialize(new ReadOnlySpan<Byte>(data.ToUtf8Bytes()), action, options);
 
     /// <summary>
     /// Deserialize a JSON object using an delegate.
