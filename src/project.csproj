@@ -8,6 +8,7 @@
     <Nullable>enable</Nullable>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <AssemblyName>Pingmint</AssemblyName>
     <RootNamespace>Pingmint</RootNamespace>
   </PropertyGroup>
 
@@ -23,6 +24,11 @@
   <PropertyGroup>
     <PackRelease>true</PackRelease>
     <PackageOutputPath>./nupkg</PackageOutputPath>
+    <DocumentationFile>bin/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSource>true</IncludeSource>
   </PropertyGroup>
 
   <PropertyGroup>
