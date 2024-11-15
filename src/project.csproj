@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.1</Version>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <Version>0.2</Version>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -17,7 +17,7 @@
     <Authors>Joe Gallagher</Authors>
     <Description>A dotnet library with useful bits of code.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/JoeGaggler/dotnet-auth</RepositoryUrl>
+    <RepositoryUrl>https://github.com/JoeGaggler/pingmint-dotnet</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>
