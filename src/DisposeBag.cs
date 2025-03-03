@@ -13,11 +13,11 @@ public class DisposeBag : IDisposable
         items.Push(disposable);
     }
 
-
     public void Dispose()
     {
-        while (items.TryPop(out var item))
+        while (items.Count > 0)
         {
+            var item = items.Pop();
             item.Dispose();
         }
     }
