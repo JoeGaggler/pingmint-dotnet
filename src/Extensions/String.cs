@@ -1,5 +1,8 @@
 namespace Pingmint;
 
+/// <summary>
+/// Extension methods for the <see cref="String"/> class.
+/// </summary>
 public static class StringExtensions
 {
     /// <summary>

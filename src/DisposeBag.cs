@@ -7,12 +7,17 @@ public class DisposeBag : IDisposable
 {
     private readonly Stack<IDisposable> items = new();
 
+    /// <summary>
+    /// Adds an IDisposable object to be disposed.
+    /// </summary>
+    /// <param name="disposable"><see cref="IDisposable" /> instance.</param>
     public void Add(IDisposable? disposable)
     {
         if (disposable is null) { return; }
         items.Push(disposable);
     }
 
+    /// <inheritdoc />
     public void Dispose()
     {
         while (items.Count > 0)

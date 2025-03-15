@@ -2,9 +2,25 @@ using System.Text.Json;
 
 namespace Pingmint;
 
+/// <summary>
+/// Delegate for serializing JSON.
+/// </summary>
+/// <typeparam name="T">Model to serialize</typeparam>
+/// <param name="writer">Serialization output</param>
+/// <param name="model">Model to serialize</param>
 public delegate void SerializeJsonAction<T>(Utf8JsonWriter writer, T model) where T : class;
+
+/// <summary>
+/// Delegate for deserializing JSON.
+/// </summary>
+/// <typeparam name="T">Model to deserialize</typeparam>
+/// <param name="reader">Deserialization input</param>
+/// <param name="model">Model to deserialize</param>
 public delegate void DeserializeJsonAction<T>(ref Utf8JsonReader reader, T model) where T : class;
 
+/// <summary>
+/// Methods for JSON serialization.
+/// </summary>
 public sealed class Json
 {
 #if !NETSTANDARD

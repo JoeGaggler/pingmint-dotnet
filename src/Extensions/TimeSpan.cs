@@ -1,7 +1,15 @@
 namespace Pingmint;
 
+/// <summary>
+/// Extension methods for the <see cref="TimeSpan"/> class.
+/// </summary>
 public static class TimeSpanExtensions
 {
+    /// <summary>
+    /// Gets a short string representation of a <see cref="TimeSpan"/> value.
+    /// </summary>
+    /// <param name="value"><see cref="TimeSpan"/> value</param>
+    /// <returns>String representation of the <see cref="TimeSpan"/></returns>
     public static String ToShortString(this TimeSpan value)
     {
         if (value < TimeSpan.Zero) { value = -value; }
