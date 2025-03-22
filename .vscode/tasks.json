@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "build",
+			"label": "build Pingmint",
 			"command": "dotnet",
 			"type": "shell",
 			"args": [
@@ -13,6 +13,25 @@
 			"group": "build",
 			"options": {
 				"cwd": "${workspaceFolder}/src/Pingmint"
+			},
+			"presentation": {
+				"reveal": "silent",
+				"clear": true
+			},
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "build Pingmint.Azure.ServiceBus",
+			"command": "dotnet",
+			"type": "shell",
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"group": "build",
+			"options": {
+				"cwd": "${workspaceFolder}/src/Pingmint.Azure.ServiceBus"
 			},
 			"presentation": {
 				"reveal": "silent",

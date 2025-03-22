@@ -1,0 +1,38 @@
+name: Pingmint
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+    paths:
+      - 'src/Pingmint/**'
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.x
+          global-json-file: global.json
+      - name: Version
+        run: |
+          OLD=$(yq ".Project.PropertyGroup[0].Version" -p xml -o xml src/Pingmint.Azure.ServiceBus/project.csproj)
+          NEW="$OLD.${COUNTER}" yq ".Project.PropertyGroup[0].Version = env(NEW)" -p xml -o xml -i src/Pingmint.Azure.ServiceBus/project.csproj
+          cat src/Pingmint.Azure.ServiceBus/project.csproj
+        env:
+          COUNTER: ${{ github.run_number }}
+      - name: Restore dependencies
+        run: dotnet restore src/Pingmint.Azure.ServiceBus --locked-mode --configfile ./NuGet.config
+      - name: Build
+        run: dotnet build --configuration Release --no-restore src/Pingmint.Azure.ServiceBus
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build --no-restore --verbosity normal --output ./nupkg src/Pingmint.Azure.ServiceBus
+      - name: Push
+        run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key $NUGET_API_KEY
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

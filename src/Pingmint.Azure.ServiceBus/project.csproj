@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>0.2</Version>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <AssemblyName>Pingmint.Azure.ServiceBus</AssemblyName>
+    <RootNamespace>Pingmint.Azure.ServiceBus</RootNamespace>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>Pingmint Azure Service Bus Utilities</Title>
+    <PackageId>Pingmint.Azure.ServiceBus</PackageId>
+    <Authors>Joe Gallagher</Authors>
+    <Description>A dotnet library with useful bits of code for working with Azure Service Bus.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/JoeGaggler/dotnet-azure-servicebus</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackRelease>true</PackRelease>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <DocumentationFile>bin/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSource>true</IncludeSource>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" />
+  </ItemGroup>
+
+</Project>
