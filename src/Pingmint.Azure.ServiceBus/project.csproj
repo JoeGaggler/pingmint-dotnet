@@ -19,7 +19,7 @@
     <Authors>Joe Gallagher</Authors>
     <Description>A dotnet library with useful bits of code for working with Azure Service Bus.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/JoeGaggler/dotnet-azure-servicebus</RepositoryUrl>
+    <RepositoryUrl>https://github.com/JoeGaggler/pingmint-dotnet</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>
