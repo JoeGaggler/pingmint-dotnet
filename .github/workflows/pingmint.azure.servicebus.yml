@@ -1,4 +1,4 @@
-name: Pingmint
+name: Pingmint.Azure.ServiceBus
 
 on:
   workflow_dispatch:
