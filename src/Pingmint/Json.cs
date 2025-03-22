@@ -23,7 +23,6 @@ public delegate void DeserializeJsonAction<T>(ref Utf8JsonReader reader, T model
 /// </summary>
 public sealed class Json
 {
-#if !NETSTANDARD
     /// <summary>
     /// Serialize an object to JSON using a delegate.
     /// </summary>
@@ -41,9 +40,7 @@ public sealed class Json
         }
         return buffer.WrittenSpan;
     }
-#endif
 
-#if !NETSTANDARD
     /// <summary>
     /// Serialize an object to JSON string using a delegate.
     /// </summary>
@@ -61,9 +58,7 @@ public sealed class Json
         }
         return buffer.WrittenMemory;
     }
-#endif
 
-#if !NETSTANDARD
     /// <summary>
     /// Serialize an object to JSON string using a delegate.
     /// </summary>
@@ -76,27 +71,6 @@ public sealed class Json
     {
         return System.Text.Encoding.UTF8.GetString(SerializeToUtf8Span(data, action, options));
     }
-#endif
-
-#if NETSTANDARD
-    /// <summary>
-    /// Serialize an object to JSON string using a delegate.
-    /// </summary>
-    /// <typeparam name="T">Type represented in JSON</typeparam>
-    /// <param name="data">JSON payload</param>
-    /// <param name="action">JSON serializer delegate</param>
-    /// <param name="options">Options for <see cref="Utf8JsonWriter"/></param>
-    /// <returns>Serialized JSON.</returns>
-    public static String SerializeToString<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
-    {
-        using var buffer = new MemoryStream();
-        using (var writer = new Utf8JsonWriter(buffer, options))
-        {
-            action(writer, data);
-        }
-        return System.Text.Encoding.UTF8.GetString(buffer.ToArray());
-    }
-#endif
 
     /// <summary>
     /// Deserialize a JSON object using an delegate.
