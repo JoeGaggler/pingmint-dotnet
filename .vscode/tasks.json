@@ -12,7 +12,7 @@
 			],
 			"group": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/src"
+				"cwd": "${workspaceFolder}/src/Pingmint"
 			},
 			"presentation": {
 				"reveal": "silent",

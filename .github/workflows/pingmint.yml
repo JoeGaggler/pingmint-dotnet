@@ -1,11 +1,13 @@
-name: dotnet
+name: Pingmint
 
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: ['main']
+    paths:
+      - 'src/Pingmint/**'
   pull_request:
-    branches: ["main"]
+    branches: ['main']
 
 jobs:
   build:
@@ -19,17 +21,17 @@ jobs:
           global-json-file: global.json
       - name: Version
         run: |
-          OLD=$(yq ".Project.PropertyGroup[0].Version" -p xml -o xml src/project.csproj)
-          NEW="$OLD.${COUNTER}" yq ".Project.PropertyGroup[0].Version = env(NEW)" -p xml -o xml -i src/project.csproj
-          cat src/project.csproj
+          OLD=$(yq ".Project.PropertyGroup[0].Version" -p xml -o xml src/Pingmint/project.csproj)
+          NEW="$OLD.${COUNTER}" yq ".Project.PropertyGroup[0].Version = env(NEW)" -p xml -o xml -i src/Pingmint/project.csproj
+          cat src/Pingmint/project.csproj
         env:
           COUNTER: ${{ github.run_number }}
       - name: Restore dependencies
-        run: dotnet restore src --locked-mode --configfile ./NuGet.config
+        run: dotnet restore src/Pingmint --locked-mode --configfile ./NuGet.config
       - name: Build
-        run: dotnet build --configuration Release --no-restore src
+        run: dotnet build --configuration Release --no-restore src/Pingmint
       - name: Pack
-        run: dotnet pack --configuration Release --no-build --no-restore --verbosity normal --output ./nupkg src
+        run: dotnet pack --configuration Release --no-build --no-restore --verbosity normal --output ./nupkg src/Pingmint
       - name: Push
         run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key $NUGET_API_KEY
         env:
