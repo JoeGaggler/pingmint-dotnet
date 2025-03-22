@@ -5,7 +5,7 @@ on:
   push:
     branches: ['main']
     paths:
-      - 'src/Pingmint/**'
+      - 'src/Pingmint.Azure.ServiceBus/**'
   pull_request:
     branches: ['main']
 
