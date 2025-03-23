@@ -36,9 +36,4 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- for BinaryData -->
-    <PackageReference Include="System.Memory.Data" />
-  </ItemGroup>
-
 </Project>

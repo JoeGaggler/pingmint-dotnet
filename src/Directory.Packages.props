@@ -9,5 +9,6 @@
     <PackageVersion Include="Azure.Messaging.ServiceBus" Version="7.18.4" />
     <PackageVersion Include="Azure.Storage.Blobs" Version="12.24.0" />
     <PackageVersion Include="System.Memory.Data" Version="9.0.3" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.3" />
   </ItemGroup>
 </Project>
