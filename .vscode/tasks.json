@@ -38,6 +38,25 @@
 				"clear": true
 			},
 			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "build Pingmint.Azure.Storage.Blobs",
+			"command": "dotnet",
+			"type": "shell",
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"group": "build",
+			"options": {
+				"cwd": "${workspaceFolder}/src/Pingmint.Azure.Storage.Blobs"
+			},
+			"presentation": {
+				"reveal": "silent",
+				"clear": true
+			},
+			"problemMatcher": "$msCompile"
 		}
 	]
 }

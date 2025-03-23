@@ -23,9 +23,9 @@ jobs:
           global-json-file: global.json
       - name: Version
         run: |
-          OLD=$(yq ".Project.PropertyGroup[0].Version" -p xml -o xml src/Pingmint/project.csproj)
-          NEW="$OLD.${COUNTER}" yq ".Project.PropertyGroup[0].Version = env(NEW)" -p xml -o xml -i src/Pingmint/project.csproj
-          cat src/Pingmint/project.csproj
+          OLD=$(yq ".Project.PropertyGroup[0].Version" -p xml -o xml src/Pingmint/Pingmint.csproj)
+          NEW="$OLD.${COUNTER}" yq ".Project.PropertyGroup[0].Version = env(NEW)" -p xml -o xml -i src/Pingmint/Pingmint.csproj
+          cat src/Pingmint/Pingmint.csproj
         env:
           COUNTER: ${{ github.run_number }}
       - name: Restore dependencies

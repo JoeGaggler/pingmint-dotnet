@@ -23,17 +23,17 @@ jobs:
           global-json-file: global.json
       - name: Version
         run: |
-          OLD=$(yq ".Project.PropertyGroup[0].Version" -p xml -o xml src/Pingmint.Azure.ServiceBus/Pingmint.Azure.ServiceBus.csproj)
-          NEW="$OLD.${COUNTER}" yq ".Project.PropertyGroup[0].Version = env(NEW)" -p xml -o xml -i src/Pingmint.Azure.ServiceBus/Pingmint.Azure.ServiceBus.csproj
-          cat src/Pingmint.Azure.ServiceBus/Pingmint.Azure.ServiceBus.csproj
+          OLD=$(yq ".Project.PropertyGroup[0].Version" -p xml -o xml src/Pingmint.Azure.Storage.Blobs/Pingmint.Azure.Storage.Blobs.csproj)
+          NEW="$OLD.${COUNTER}" yq ".Project.PropertyGroup[0].Version = env(NEW)" -p xml -o xml -i src/Pingmint.Azure.Storage.Blobs/Pingmint.Azure.Storage.Blobs.csproj
+          cat src/Pingmint.Azure.Storage.Blobs/Pingmint.Azure.Storage.Blobs.csproj
         env:
           COUNTER: ${{ github.run_number }}
       - name: Restore dependencies
-        run: dotnet restore src/Pingmint.Azure.ServiceBus --locked-mode --configfile ./NuGet.config
+        run: dotnet restore src/Pingmint.Azure.Storage.Blobs --locked-mode --configfile ./NuGet.config
       - name: Build
-        run: dotnet build --configuration Release --no-restore src/Pingmint.Azure.ServiceBus
+        run: dotnet build --configuration Release --no-restore src/Pingmint.Azure.Storage.Blobs
       - name: Pack
-        run: dotnet pack --configuration Release --no-build --no-restore --verbosity normal --output ./nupkg src/Pingmint.Azure.ServiceBus
+        run: dotnet pack --configuration Release --no-build --no-restore --verbosity normal --output ./nupkg src/Pingmint.Azure.Storage.Blobs
       - name: Push
         run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key $NUGET_API_KEY
         env:

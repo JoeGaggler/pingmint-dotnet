@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>0.2</Version>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <AssemblyName>Pingmint.Azure.Storage.Blobs</AssemblyName>
+    <RootNamespace>Pingmint.Azure.Storage.Blobs</RootNamespace>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>Pingmint Azure Storage Blobs Utilities</Title>
+    <PackageId>Pingmint.Azure.Storage.Blobs</PackageId>
+    <Authors>Joe Gallagher</Authors>
+    <Description>A dotnet library with useful bits of code for working with Azure Storage Blobs.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/JoeGaggler/pingmint-dotnet</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackRelease>true</PackRelease>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <DocumentationFile>bin/$(Configuration)/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSource>true</IncludeSource>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+  <PackageReference Include="Azure.Storage.Blobs" />
+  </ItemGroup>
+
+</Project>
