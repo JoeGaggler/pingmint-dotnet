@@ -31,7 +31,7 @@ public sealed class Json
     /// <param name="action">JSON serializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonWriter"/></param>
     /// <returns>Serialized JSON.</returns>
-    public static ReadOnlySpan<byte> SerializeToUtf8Span<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
+    public static ReadOnlySpan<byte> SerializeToUtf8Span<T>(T data, SerializeJsonAction<T> action, JsonWriterOptions options = default) where T : class
     {
         var buffer = new System.Buffers.ArrayBufferWriter<Byte>();
         using (var writer = new Utf8JsonWriter(buffer, options))
@@ -49,7 +49,7 @@ public sealed class Json
     /// <param name="action">JSON serializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonWriter"/></param>
     /// <returns>Serialized JSON.</returns>
-    public static ReadOnlyMemory<Byte> SerializeToUtf8Memory<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
+    public static ReadOnlyMemory<Byte> SerializeToUtf8Memory<T>(T data, SerializeJsonAction<T> action, JsonWriterOptions options = default) where T : class
     {
         var buffer = new System.Buffers.ArrayBufferWriter<Byte>();
         using (var writer = new Utf8JsonWriter(buffer, options))
@@ -67,7 +67,7 @@ public sealed class Json
     /// <param name="action">JSON serializer delegate</param>
     /// <param name="options">Options for <see cref="Utf8JsonWriter"/></param>
     /// <returns>Serialized JSON.</returns>
-    public static String SerializeToString<T>(T data, Action<Utf8JsonWriter, T> action, JsonWriterOptions options = default) where T : class
+    public static String SerializeToString<T>(T data, SerializeJsonAction<T> action, JsonWriterOptions options = default) where T : class
     {
         return System.Text.Encoding.UTF8.GetString(SerializeToUtf8Span(data, action, options));
     }
